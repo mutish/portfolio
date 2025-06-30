@@ -1,23 +1,39 @@
 /* Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
+/* Base Styles */
 :root {
+    /* Color Scheme */
     --lightbeige: #fdf5e6;
-    --charcoal: #212529;
-    --earthy-olive: #687351;
+    --charcoal: #2c3e50;
+    --earthy-olive: #8b9a46;
     --slate-blue: #536878;
-    --gradient-purple: #8A2BE2;
+    --gradient-purple: #6e45e2;
     --gradient-blue: #4169E1;
     --text-light: #E0E0E0;
     --text-white: #FFFFFF;
-    --transition: all 0.3s ease;
-    --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    
+    /* Typography */
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    
+    /* Spacing */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 2rem;
+    --space-lg: 4rem;
+    --space-xl: 8rem;
+    
+    /* Transitions */
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Layout */
+    --max-width: 1200px;
     --border-radius: 8px;
+    --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
-/* Base Styles */
-* {
-    margin: 0;
+/* Reset & Base Styles */
+*, *::before, *::after {
     padding: 0;
     box-sizing: border-box;
 }
@@ -126,23 +142,33 @@ nav {
 }
 
 .right a {
-    font-weight: 500;
-    position: relative;
-    padding: 0.5rem 0;
 }
 
-.right a::after {
+.nav-links a {
+    position: relative;
+    color: var(--charcoal);
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-links a::after {
     content: '';
     position: absolute;
-    bottom: 0;
+    bottom: -4px;
     left: 0;
     width: 0;
     height: 2px;
-    background: var(--slate-blue);
-    transition: var(--transition);
+    background: linear-gradient(90deg, var(--gradient-purple), var(--gradient-blue));
+    transition: width 0.3s ease;
 }
 
-.right a:hover::after {
+.nav-links a:hover {
+    color: var(--gradient-blue);
+}
+
+.nav-links a:hover::after {
     width: 100%;
 }
 
@@ -151,33 +177,245 @@ nav {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: 6rem 2rem 4rem;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.8)),
-                url('https://images.unsplash.com/photo-1498050108023-c5249f9dfa4f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    padding: 8rem 0;
+    position: relative;
+    background-color: var(--lightbeige);
+    overflow: hidden;
 }
 
 .hero-content {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.hero-text {
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
 }
 
-.hero h1 {
-    font-size: 3.5rem;
-    margin-bottom: 1.5rem;
+.hero-title {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1.2;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    color: var(--charcoal);
+}
+
+.hero-title .greeting {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--slate-blue);
+    margin-bottom: 0.5rem;
+}
+
+.hero-title .name {
+    display: block;
     background: linear-gradient(135deg, var(--gradient-purple), var(--gradient-blue));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0.5rem 0;
     line-height: 1.1;
 }
 
-.hero p {
-    font-size: 1.25rem;
-    margin-bottom: 2.5rem;
+.hero-title .role {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 400;
     color: var(--slate-blue);
+    margin-top: 1rem;
+}
+
+.hero-description {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: var(--slate-blue);
+    max-width: 600px;
+    margin: 2rem auto 3rem;
+    font-weight: 400;
+}
+
+.hero-cta {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 2.5rem;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--gradient-purple), var(--gradient-blue));
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--charcoal);
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid var(--charcoal);
+    cursor: pointer;
+    display: inline-block;
+}
+
+.btn-outline:hover {
+    background: var(--charcoal);
+    color: white;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--slate-blue);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.scroll-indicator:hover {
+    opacity: 1;
+}
+
+.scroll-indicator .line {
+    width: 1px;
+    height: 60px;
+    background: rgba(83, 104, 120, 0.3);
+    margin-top: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.scroll-indicator .line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background: linear-gradient(to bottom, var(--gradient-purple), var(--gradient-blue));
+    animation: scrollLine 2s infinite;
+    border-radius: 2px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .hero-title {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+    }
+    
+    .hero-title .role {
+        font-size: 1.25rem;
+    }
+    
+    .hero-description {
+        font-size: 1.1rem;
+        padding: 0 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 7rem 0 4rem;
+        min-height: 90vh;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-title .greeting {
+        font-size: 1.25rem;
+    }
+    
+    .hero-title .role {
+        font-size: 1.1rem;
+    }
+    
+    .hero-description {
+        font-size: 1rem;
+        margin: 1.5rem auto 2.5rem;
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 250px;
+        padding: 0.8rem 1.5rem;
+    }
+    
+    .scroll-indicator {
+        bottom: 1.5rem;
+    }
+    
+    .scroll-indicator .line {
+        height: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 6rem 0 3rem;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero-title .greeting {
+        font-size: 1.1rem;
+    }
+    
+    .hero-title .role {
+        font-size: 1rem;
+        margin-top: 0.5rem;
+    }
+    
+    .hero-description {
+        font-size: 0.95rem;
+        margin: 1.25rem auto 2rem;
+    }
+    
+    .hero-cta {
+        margin-top: 1.5rem;
+    }
+    
+    .btn {
+        font-size: 0.9rem;
+    }
 }
 
 /* Services Section */
