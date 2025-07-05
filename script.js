@@ -1,220 +1,251 @@
-// Wait for the DOM to be fully loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Navbar scroll effect
-    const navbar = document.querySelector('.navbar');
-    let lastScroll = 0;
-    
-    function handleScroll() {
-        const currentScroll = window.pageYOffset;
-        
-        // Add/remove scrolled class based on scroll position
-        if (currentScroll <= 0) {
-            navbar.classList.remove('scrolled');
-            return;
-        }
-        
-        if (currentScroll > lastScroll && currentScroll > 100) {
-            // Scrolling down
-            navbar.classList.add('scrolled');
-        } else if (currentScroll < lastScroll) {
-            // Scrolling up
-            navbar.classList.add('scrolled');
-        }
-        
-        lastScroll = currentScroll;
-    }
-    
-    // Initial check
-    handleScroll();
-    
-    // Add scroll event listener
-    window.addEventListener('scroll', handleScroll);
-    
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        if (anchor.getAttribute('href') !== '#') {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    const headerOffset = 80;
-                    const elementPosition = targetElement.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+// Toggling Skill Tabs
 
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    const mobileMenu = document.querySelector('.mobile-menu');
-                    if (mobileMenu && mobileMenu.classList.contains('active')) {
-                        mobileMenu.classList.remove('active');
-                        document.body.style.overflow = 'auto';
-                    }
-                }
-            });
-        }
-    });
-    
-    // Mobile menu toggle
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    if (mobileMenuToggle) {
-        mobileMenuToggle.addEventListener('click', function() {
-            const mobileMenu = document.querySelector('.mobile-menu');
-            if (mobileMenu) {
-                mobileMenu.classList.toggle('active');
-                document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : 'auto';
-            }
-        });
-    }
-    
-    // Form submission
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const name = this.querySelector('input[name="name"]').value.trim();
-            const email = this.querySelector('input[name="email"]').value.trim();
-            const message = this.querySelector('textarea[name="message"]').value.trim();
-            
-            // Simple validation
-            let isValid = true;
-            
-            // Reset error states
-            document.querySelectorAll('.form-group').forEach(group => {
-                group.classList.remove('error');
-            });
-            
-            // Validate name
-            if (!name) {
-                document.querySelector('input[name="name"]').parentElement.classList.add('error');
-                isValid = false;
-            }
-            
-            // Validate email
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!email || !emailRegex.test(email)) {
-                document.querySelector('input[name="email"]').parentElement.classList.add('error');
-                isValid = false;
-            }
-            
-            // Validate message
-            if (!message) {
-                document.querySelector('textarea[name="message"]').parentElement.classList.add('error');
-                isValid = false;
-            }
-            
-            if (!isValid) {
-                return;
-            }
-            
-            // Here you would typically send the form data to a server
-            // For now, we'll just show a success message
-            alert('Thank you for your message! I will get back to you soon.');
-            this.reset();
-        });
-    }
-    
-    // Add animation classes on scroll
-    const animateOnScroll = function() {
-        const elements = document.querySelectorAll('.animate-on-scroll');
-        
-        elements.forEach(element => {
-            const elementTop = element.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
-            
-            if (elementTop < windowHeight - 100) {
-                element.classList.add('animated');
-            }
-        });
-    };
-    
-    // Run once on page load
-    animateOnScroll();
-    
-    // Run on scroll
-    window.addEventListener('scroll', animateOnScroll);
-    
-    // Intersection Observer for fade-in animations
-    const fadeElements = document.querySelectorAll('.fade-in');
-    
-    const fadeInObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    });
+const tabs = document.querySelectorAll('[data-target]');
+const tabContent = document.querySelectorAll('[data-content]');
 
-    fadeElements.forEach(element => {
-        fadeInObserver.observe(element);
-    });
+tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        const target = document.querySelector(tab.dataset.target);
 
-    // Form submission handling
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const formValues = Object.fromEntries(formData.entries());
-            
-            // Simple validation
-            let isValid = true;
-            const requiredFields = ['name', 'email', 'message'];
-            
-            requiredFields.forEach(field => {
-                if (!formValues[field]?.trim()) {
-                    isValid = false;
-                    const input = this.querySelector(`[name="${field}"]`);
-                    input.classList.add('error');
-                }
-            });
-            
-            if (!isValid) {
-                alert('Please fill in all required fields.');
-                return;
-            }
-            
-            // Here you would typically send the form data to a server
-            // For now, we'll just show a success message
-            alert('Thank you for your message! I will get back to you soon.');
-            this.reset();
-        });
-        
-        // Remove error class when user starts typing
-        const formInputs = contactForm.querySelectorAll('input, textarea');
-        formInputs.forEach(input => {
-            input.addEventListener('input', function() {
-                this.classList.remove('error');
-            });
-        });
+        tabContent.forEach(tabContents => {
+            tabContents.classList.remove('skills-active');
+        })
+
+        target.classList.add('skills-active');
+
+        tabs.forEach(tab => {
+            tab.classList.remove('skills-active');
+        })
+
+        tab.classList.add('skills-active');
+    })
+})
+
+//Mix it up Sorting
+
+let mixerPortfolio = mixitup('.work-container', {
+    selectors: {
+        target: '.work-card'
+    },
+    animation: {
+        duration: 300
     }
 });
 
-// Helper function for debouncing
-function debounce(func, wait = 10, immediate = true) {
-    let timeout;
-    return function() {
-        const context = this, args = arguments;
-        const later = function() {
-            timeout = null;
-            if (!immediate) func.apply(context, args);
-        };
-        const callNow = immediate && !timeout;
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-        if (callNow) func.apply(context, args);
-    };
+// Active link changing
+
+const linkWork = document.querySelectorAll('.work-item');
+
+function activeWork() {
+    linkWork.forEach(l => l.classList.remove('active-work'))
+    this.classList.add('active-work')
 }
+linkWork.forEach(l => l.addEventListener('click', activeWork));
+
+//Portfolio Popup
+
+document.addEventListener('click', (e) => {
+    if(e.target.classList.contains('work-button')){
+        togglePortfolioPopup();
+        portfolioItemDetails(e.target.parentElement);
+    }
+})
+
+function togglePortfolioPopup() {
+    document.querySelector('.portfolio-popup').classList.toggle('open');
+}
+
+document.querySelector('.portfolio-popup-close').addEventListener('click', togglePortfolioPopup);
+
+function portfolioItemDetails(portfolioItem) {
+    document.querySelector('.pp-thumbnail img').src = portfolioItem.querySelector('.work-img').src;
+    document.querySelector('.portfolio-popup-subtitle span').innerHTML = portfolioItem.querySelector('.work-title').innerHTML;
+    document.querySelector('.portfolio-popup-body').innerHTML = portfolioItem.querySelector('.portfolio-item-details').innerHTML;
+}
+
+//Services Popup
+const modalViews = document.querySelectorAll('.services-modal');
+const modelBtns = document.querySelectorAll('.services-button');
+const modalCloses = document.querySelectorAll('.services-modal-close');
+
+let modal = function(modalClick) {
+    modalViews[modalClick].classList.add('active-modal');
+}
+
+modelBtns.forEach((modelBtn, i) => {
+    modelBtn.addEventListener('click', () => {
+        modal(i);
+    })
+})
+
+modalCloses.forEach((modalClose) => {
+    modalClose.addEventListener('click', () => {
+        modalViews.forEach((modalView) => {
+            modalView.classList.remove('active-modal');
+        })
+    })
+})
+
+//Swiper Testimonial
+
+let swiper = new Swiper(".testimonials-container", {
+    spaceBetween: 24,
+    loop: true,
+    grabCursor: true,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    breakpoints: {
+        576: {
+            slidesPerView: 2,
+        },
+        768: {
+            slidesPerView: 2,
+            spaceBetween: 48,
+        },
+    },
+});
+
+// Input Animation
+
+const inputs = document.querySelectorAll('.input');
+
+function focusFunc() {
+    let parent = this.parentNode;
+    parent.classList.add('focus');
+}
+
+function blurFunc() {
+    let parent = this.parentNode;
+    if(this.value == "") {
+        parent.classList.remove('focus');
+    }
+}
+
+inputs.forEach((input) => {
+    input.addEventListener('focus', focusFunc);
+    input.addEventListener('blur', blurFunc);
+})
+
+// Scroll Section Active Link
+
+const sections = document.querySelectorAll('section[id]');
+
+window.addEventListener('scroll', navHighlighter);
+
+function navHighlighter() {
+    let scrollY = window.pageYOffset;
+    sections.forEach(current => {
+        const sectionHeight = current.offsetHeight;
+        const sectionTop = current.offsetTop - 50;
+        const sectionId = current.getAttribute('id');
+
+        if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+            document.querySelector('.nav-menu a[href*=' + sectionId + ']').classList.add('active-link');
+        }else {
+            document.querySelector('.nav-menu a[href*=' + sectionId + ']').classList.remove('active-link');
+        }
+    })
+}
+
+// Activating Sidebar
+
+const navMenu = document.getElementById('sidebar');
+const navToggle = document.getElementById('nav-toggle');
+const navClose = document.getElementById('nav-close');
+
+if(navToggle) {
+    navToggle.addEventListener('click', () => {
+        navMenu.classList.add('show-sidebar');
+    })
+}
+
+if(navClose) {
+    navClose.addEventListener('click', () => {
+        navMenu.classList.remove('show-sidebar');
+    })
+}
+
+//clock
+function updateLocalTime(){
+    const now = new Date();
+    const options = {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false,
+        timeZoneName: "short"
+    };
+    document.getElementById("local-time").textContent = now.toLocaleTimeString([], options);
+}
+
+setInterval(updateLocalTime, 1000);
+updateLocalTime();
+
+//Share button
+const shareBtn = document.querySelector('.btn-share');
+const toast = document.getElementById('toast');
+
+shareBtn.addEventListener('click', async() => {
+    const shareData = {
+        title: "Check this portfolio and support a rising web developer",
+        text: "This developer's portfolio is all about growth, creativity, and clean code",
+        url: window.location.href
+    };
+    if(navigator.share){
+        try{
+            await navigator.share(shareData);
+            console.log("Shared successfully");
+        } catch (err) {
+          console.error("Share cancelled or failed. Try again", err);
+        }
+    }else {
+        try {
+            await navigator.clipboard.writeText(shareData.url);
+            showToast();
+        } catch (err) {
+            alert("Copy failed. LOng press the link to share it.");
+        }
+    }
+});
+
+function showToast(){
+    toast.classList.remove("hidden");
+    toast.classList.add("show");
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+        toast.classList.add("hidden");   
+    }, 2500);
+}
+
+//Skills animation
+function animateSkills() {
+    const skillFills = document.querySelectorAll(".skills-percentage");
+    skillFills.forEach(fill => {
+      // Navigate to the skills-number element
+      const skillData = fill.closest('.skills-data');
+      const percentage = skillData.querySelector(".skills-number").textContent;
+      // Set initial width to 0 to enable animation
+      fill.style.width = '0%';
+      // Use setTimeout to create animation effect
+      setTimeout(() => {
+        fill.style.transition = 'width 1s ease-in-out';
+        fill.style.width = percentage;
+      }, 100);
+    });
+}
+
+const skillSection = document.querySelector("#skills");
+let animated = false;
+
+window.addEventListener("scroll", () => {
+    const sectionTop = skillSection.getBoundingClientRect().top;
+    const screenHeight = window.innerHeight;
+
+    if(sectionTop < screenHeight && !animated){
+        animateSkills();
+        animated = true;
+    }
+});
