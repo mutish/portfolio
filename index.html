@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Stacey Mutinda</title>
+
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
 
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="nav-toggle" id="nav-toggle">
@@ -42,9 +43,9 @@
                             <a href="#work" class="nav-link">Work</a>
                         </li>
 
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="#services" class="nav-link">Services</a>
-                        </li>
+                        </li> -->
 
                         <li class="nav-item">
                             <a href="#contact" class="nav-link">Contact</a>
@@ -72,16 +73,23 @@
         <section class="home" id="home">
             <div class="home-container container grid">
                 <div class="home-social">
-                    <span class="home-social-follow">Web Developer & Designer</span>
+                    <span class="home-social-follow">Student</span>
                 </div>
 
-            <div class="home-data">
-                <h1 class="home-title">Hi, I'm Stacey Mutinda</h1>
-                <h3 class="home-subtitle">Full-stack Web Developer</h3>
-                <p class="home-description">I have high level experience in web design, development knowledge, and producing quality work</p>
-                <a href="#about" class="button">
+            <!-- Consult ChatGPT -->
+                <div class="home-data">
+                <h1 class="home-title" id="type-title">Hi, I'm Stacey Mutinda</h1>
+                <h3 class="home-subtitle">Full-stack Web developer</h3>
+                <!-- <h3 class="home-subtitle">Student, University of Nairobi</h3> -->
+                <!-- tweak a bit more  -->
+                <p class="home-description">
+                    I’m a full-stack web developer who loves bringing ideas to life through fast, scalable, and user-centered web apps.
+                    I’m currently sharpening my skills in modern frameworks and cloud technologies, preparing to build impactful
+                    solutions at top tech companies.
+                </p>
+                <a href="assets/StaceyMutindaCV.pdf" class="button" download>
                     <i class="uil uil-user button-icon"></i>
-                    More About me!
+                    Download CV
                 </a>
             </div>
 
@@ -109,17 +117,20 @@
 
             
         </section>
-<!--About me Section-->
+        <!--About me Section-->
         <section class="about section" id="about">
             <h2 class="section-title" data-heading="About Me">About me</h2>
 
-            <div class="about-container container grid">
-<!--                <img src="https://i.postimg.cc/W1YZxTpJ/about-img.jpg" alt="" class="about-img">-->
+            <div class="about-container container grid" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
 
-                <div class="about-data">
-                    <h3 class="about-heading">Hi, I'm Stacey Mutinda, based in Kenya</h3>
-                    <p class="about-description">I'm a web developer focused on creating clean, functional websites. While I'm still growing my skills, I enjoy working with web technologies and designing user-friendly experiences.</p>
 
+                <div class="about-data" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <div class="about-data">
+                        <p class="about-description">
+                            I'm a computer science student and full-stack developer passionate about solving real-world problems with clean,
+                            efficient code. I enjoy exploring new technologies, collaborating on creative projects, and continuously pushing
+                            myself to grow as an engineer.
+                        </p>
                     <div class="about-info">
                         <div class="about-box">
                             <i class="uil uil-clock about-icon"></i>
@@ -145,6 +156,8 @@
             </div>
         </section>
 
+       
+        <!-- Qualifications -->
         <section class="qualification section">
             <h2 class="section-title" data-heading="My Journey">Qualifications</h2>
 
@@ -162,50 +175,44 @@
 
                         <div class="timeline-item">
                             <div class="circle-dot"></div>
-                            <h3 class="timeline-title">eMobilis  Technology Institute (Westlands Nairobi, Kenya )</h3>
-                            <p class="timeline-text">Certificate in Full stack development</p>
-                            <span class="timeline-date"><i class="uil uil-calendar-alt"></i>January 2023 - May 2023</span>
+                            <h3 class="timeline-title">The Kenya High School (Nairobi, Kenya )</h3>
+                            <p class="timeline-text">Kenya Certificate of Secondary Education (KCSE)</p>
+                            <span class="timeline-date"><i class="uil uil-calendar-alt"></i>2019 - 2022</span>
                         </div>
 
-<!--                        <div class="timeline-item">-->
-<!--                            <div class="circle-dot"></div>-->
-<!--                            <h3 class="timeline-title">KLM University (Sometown, NJ)</h3>-->
-<!--                            <p class="timeline-text">BS in Web Development</p>-->
-<!--                            <span class="timeline-date"><i class="uil uil-calendar-alt"></i>2015 - 2017</span>-->
-<!--                        </div>-->
+                    <div class="timeline-item">
+                        <div class="circle-dot"></div>
+                        <h3 class="timeline-title">Vitale Primary School</h3>
+                        <p class="timeline-text">Kenya Certificate of Primary Education(KCPE)</p>
+                        <span class="timeline-date"><i class="uil uil-calendar-alt"></i>2009 - 2018</span>
+                    </div>
                     </div>
                 </div>
 
                 <div class="experience">
-                    <h3 class="qualification-title"><i class="uil uil-suitcase"></i>Experience</h3>
+                    <h3 class="qualification-title"><i class="uil uil-suitcase"></i>Additional Trainings</h3>
 
                     <div class="timeline">
                         <div class="timeline-item">
                             <div class="circle-dot"></div>
-                            <h3 class="timeline-title">Digital Matatu</h3>
-                            <p class="timeline-text">Kotlin/Android Developer</p>
-                            <span class="timeline-date"><i class="uil uil-calendar-alt"></i>February 2025 - June 2025</span>
+                            <h3 class="timeline-title">eMobilis Technology Institute</h3>
+                            <p class="timeline-text">Certificate in Full-stack Development</p>
+                            <span class="timeline-date"><i class="uil uil-calendar-alt"></i>January 2023 - May 2023</span>
                         </div>
 
-<!--                        <div class="timeline-item">-->
-<!--                            <div class="circle-dot"></div>-->
-<!--                            <h3 class="timeline-title">Gabogle Inc. (Somwtown, NJ)</h3>-->
-<!--                            <p class="timeline-text">Web site / UX Designer</p>-->
-<!--                            <span class="timeline-date"><i class="uil uil-calendar-alt"></i>2015 - 2018</span>-->
-<!--                        </div>-->
-
-<!--                        <div class="timeline-item">-->
-<!--                            <div class="circle-dot"></div>-->
-<!--                            <h3 class="timeline-title">Copalopa Inc. (Sometown, NJ)</h3>-->
-<!--                            <p class="timeline-text">Junior UX Designer</p>-->
-<!--                            <span class="timeline-date"><i class="uil uil-calendar-alt"></i>2013 - 2015</span>-->
-<!--                        </div>-->
+                    <div class="timeline-item">
+                        <div class="circle-dot"></div>
+                        <h3 class="timeline-title">Amazon Web Services(AWS) Cloud Practitioner training</h3>
+                        <p class="timeline-text">check school email !!!</p>
+                        <span class="timeline-date"><i class="uil uil-calendar-alt"></i>March 9th 2025  - March 14th 2025</span>
+                    </div>
                     </div>
                 </div>
             </div>
         </section>
-<!--        SKILLS -->
 
+
+        <!-- SKILLS -->
         <section class="skills section" id="skills">
             <h2 class="section-title" data-heading="My Skills">My Experience</h2>
 
@@ -217,18 +224,6 @@
                         <div>
                             <h1 class="skills-title">Frontend Developer</h1>
                             <span class="skills-subtitle">Junior frontend developer</span>
-                            
-                        </div>
-
-                        <i class="uil uil-angle-down skills-arrow"></i>
-                    </div>
-
-                    <div class="skills-header" data-target="#design">
-                        <i class="uil uil-swatchbook skills-icon"></i>
-
-                        <div>
-                            <h1 class="skills-title">UI / UX Design</h1>
-                            <span class="skills-subtitle">More than 5 years</span>
                             
                         </div>
 
@@ -283,55 +278,6 @@
                                     <span class="skills-percentage" style="width: 60%;"></span>
                                 </div>
                             </div>
-
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">React</h3>
-                                    <span class="skills-number">85%</span>
-                                </div>
-
-                                <div class="skills-bar">
-                                    <span class="skills-percentage" style="width: 85%;"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="skills-group" data-content id="design">
-                        <div class="skills-list grid">
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">Figma</h3>
-                                    <span class="skills-number">90%</span>
-                                </div>
-
-                                <div class="skills-bar">
-                                    <span class="skills-percentage" style="width: 90%;"></span>
-                                </div>
-                            </div>
-
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">Sketch</h3>
-                                    <span class="skills-number">80%</span>
-                                </div>
-
-                                <div class="skills-bar">
-                                    <span class="skills-percentage" style="width: 80%;"></span>
-                                </div>
-                            </div>
-
-                            <div class="skills-data">
-                                <div class="skills-titles">
-                                    <h3 class="skills-name">PhotoShop</h3>
-                                    <span class="skills-number">70%</span>
-                                </div>
-
-                                <div class="skills-bar">
-                                    <span class="skills-percentage" style="width: 70%;"></span>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
 
@@ -387,6 +333,8 @@
             </div>
         </section>
 
+
+        <!-- RECENT WORKS ... -->
         <section class="work section" id="work">
             <h2 class="section-title" data-heading="My Portfolio">Recent Works</h2>
 
@@ -448,57 +396,6 @@
                         </ul>
                     </div>
                 </div>
-
-                <div class="work-card mix app">
-                    <img src="https://i.postimg.cc/s2DGqyG8/work-4.png" alt="" class="work-img">
-                    <h3 class="work-title">App Design</h3>
-                    <span class="work-button">Demo<i class="uil uil-arrow-right work-button-icon"></i></span>
-
-                    <div class="portfolio-item-details">
-                        <h3 class="details-title">Mobile App Landing Design & Services</h3>
-                        <p class="details-description">Modern workout website interface design featuring a bold and energetic visual layout</p>
-                        <ul class="details-info">
-                            <li>Created - <span>4 Apr 2025</span></li>
-                            <li>Technologies - <span>html css</span></li>
-                            <li>Role - <span>frontend</span></li>
-                            <li>View - <span><a href="#">www.domain.com</a></span></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="work-card mix web">
-                    <img src="https://i.postimg.cc/TYVyPhrF/work-5.png" alt="" class="work-img">
-                    <h3 class="work-title">Brand Design</h3>
-                    <span class="work-button">Demo<i class="uil uil-arrow-right work-button-icon"></i></span>
-
-                    <div class="portfolio-item-details">
-                        <h3 class="details-title">Design for Technology & Services</h3>
-                        <p class="details-description">An app design that is clean, functional, and ideal for gamers looking to manage their digital assets and purchases</p>
-                        <ul class="details-info">
-                            <li>Created - <span>28 Mar 2025</span></li>
-                            <li>Technologies - <span>html css</span></li>
-                            <li>Role - <span>frontend</span></li>
-                            <li>View - <span><a href="#">www.domain.com</a></span></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="work-card mix design">
-                    <img src="https://i.postimg.cc/wMdqKcbv/work-6.png" alt="" class="work-img">
-                    <h3 class="work-title">Web Design</h3>
-                    <span class="work-button">Demo<i class="uil uil-arrow-right work-button-icon"></i></span>
-
-                    <div class="portfolio-item-details">
-                        <h3 class="details-title">App for Technology & Services</h3>
-                        <p class="details-description">An app design that is clean and modern, making food browsing and ordering easy</p>
-                        <ul class="details-info">
-                            <li>Created - <span>20 Mar 2025</span></li>
-                            <li>Technologies - <span>html css</span></li>
-                            <li>Role - <span>frontend</span></li>
-                            <li>View - <span><a href="#">www.domain.com</a></span></li>
-                        </ul>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -529,7 +426,7 @@
         </div>
 <!--        Services -->
 
-        <section class="services section" id="services">
+        <!-- <section class="services section" id="services">
             <h2 class="section-title" data-heading="Services">What I Offer</h2>
 
             <div class="services-container container grid">
@@ -700,9 +597,9 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
 
-        <section class="testimonials section">
+        <!-- <section class="testimonials section">
             <h2 class="section-title" data-heading="My clients say">Testimonials</h2>
 
             <div class="testimonials-container container swiper">
@@ -758,8 +655,9 @@
                 <div class="swiper-pagination"></div>
             </div>
             
-        </section>
+        </section> -->
 
+        <!-- CONTACTS -->
         <section class="contact section" id="contact">
             <h2 class="section-title" data-heading="Get in Touch">Contact me</h2>
 
@@ -825,9 +723,9 @@
                     </div>
 
                     <ul class="footer-links">
-                        <li>
+                        <!-- <li>
                             <a href="#services" class="footer-links">Services</a>
-                        </li>
+                        </li> -->
                         <li>
                             <a href="#work" class="footer-links">Work</a>
                         </li>

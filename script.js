@@ -249,3 +249,20 @@ window.addEventListener("scroll", () => {
         animated = true;
     }
 });
+
+// Typing effect for home title
+document.addEventListener("DOMContentLoaded", function() {
+    const el = document.getElementById("type-title");
+    if (!el) return;
+    const text = "Hi, I'm Stacey Mutinda";
+    el.textContent = "";
+    let i = 0;
+    function type() {
+        if (i < text.length) {
+            el.textContent += text.charAt(i);
+            i++;
+            setTimeout(type, 70);
+        }
+    }
+    type();
+});
