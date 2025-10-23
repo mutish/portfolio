@@ -175,9 +175,20 @@ function updateLocalTime(){
         minute: "2-digit",
         second: "2-digit",
         hour12: false,
+        timeZone: "Africa/Nairobi",
         timeZoneName: "short"
     };
-    document.getElementById("local-time").textContent = now.toLocaleTimeString([], options);
+
+    // Try to get a timezone-aware string; some browsers may not show "EAT",
+    // so fall back to appending "EAT" explicitly if it's missing.
+    let timeString = now.toLocaleTimeString([], options);
+    if (!/EAT/i.test(timeString)) {
+        const optsNoName = { ...options };
+        delete optsNoName.timeZoneName;
+        timeString = now.toLocaleTimeString([], optsNoName) + ' EAT';
+    }
+
+    document.getElementById("local-time").textContent = timeString;
 }
 
 setInterval(updateLocalTime, 1000);
